@@ -13,6 +13,10 @@ var App = Ember.Application.extend({
   Resolver: Resolver['default']
 });
 
+App.ApplicationAdapter = DS.RESTAdapter.extend({
+  host: 'http://localhost:3000'
+});
+
 Ember.Application.initializer(auth);
 
 
