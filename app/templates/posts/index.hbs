@@ -1,16 +1,21 @@
-Testing
+<div class="page-header">
+  <h1>All Posts</h1>
+</div>
 
-</br>
-Testing
+<button {{action 'createNew'}}>New Post</button>
 
-</br>
-Testing
+{{#each post in model}}
+	<div class="row">
+	  <div class="col-xs-12 col-md-8">
+	    {{post.details}}
 
-</br>
-Testing
+	  </div>
+	  <div class="col-xs-6 col-md-4">
+		  <button {{action 'edit' post}}>Edit</button>
+	  </div>
+	</div>
+{{/each}}
 
-</br>
-Testing
 
-</br>
+
 	
