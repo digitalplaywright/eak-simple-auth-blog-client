@@ -1,11 +1,22 @@
 var PostsController =  Ember.ObjectController.extend({
 	actions: {
 	    save: function() {
-	      this.get("model").save().then(function() {
-		    this.transitionTo('service.index');
-		  }, function() {
-		   console.log('fuck, it failed');
-		  });
+	      var _self = this;
+
+	      function redirectToShow() {
+	        _self.transitionToRoute('posts.show', _self.get('model'));
+	      }
+	      function handleErrors(reason) {
+	        // if reason instanceof DS.InvalidError
+	        //  model.errors will contain the server-supplied validation errors
+	        // else
+	        //  isError will be true and we'll show a generic "seems bad" message
+	      }
+
+
+
+
+	      this.get("model").save().then(redirectToShow).catch(handleErrors);
 	    }
 	}
 });
