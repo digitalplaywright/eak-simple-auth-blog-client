@@ -7,6 +7,10 @@ Router.map(function() {
   // route that will generate an authorization error
   this.route('erroneous');
   this.route('registration');
+  this.resource('posts', function() {
+    this.route('index', { path: '/' });
+    this.route('new');
+  });
 });
 
 export default Router;
