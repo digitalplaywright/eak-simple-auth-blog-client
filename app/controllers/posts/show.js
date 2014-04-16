@@ -1,5 +1,5 @@
-var PostsNewController =  Ember.ObjectController.extend({
+var PostsShowController =  Ember.ObjectController.extend({
 
 });
 
-export default PostsNewController;
+export default PostsShowController;

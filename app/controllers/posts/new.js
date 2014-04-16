@@ -1,4 +1,4 @@
-var PostsController =  Ember.ObjectController.extend({
+var PostsNewController =  Ember.ObjectController.extend({
 	actions: {
 	    save: function() {
 	      var _self = this;
@@ -21,4 +21,4 @@ var PostsController =  Ember.ObjectController.extend({
 	}
 });
 
-export default PostsController;
+export default PostsNewController;

@@ -1,7 +1,7 @@
-var PostsRoute = Ember.Route.extend({
+var PostsNewRoute = Ember.Route.extend({
   model: function(){
       return this.store.createRecord("post");
   }
 });
 
-export default PostsRoute;
+export default PostsNewRoute;
