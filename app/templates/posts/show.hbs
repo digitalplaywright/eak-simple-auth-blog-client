@@ -1,10 +1,12 @@
 <div class="page-header">
 	<div class="row">
 	  <div class="col-xs-12 col-md-8">
-        <h1>Showing post {{model.details}}</h1>
+        <h1>{{model.details}}</h1>
 	  </div>
 	  <div class="col-xs-6 col-md-4">
 		  <button {{action 'edit' model}}>Edit</button>
+		  <button {{action 'viewAll' post}}>View All</button>
+
 	  </div>
 	</div>
 </div>

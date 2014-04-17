@@ -15,6 +15,10 @@ var PostsEditController =  Ember.ObjectController.extend({
 
 
 	      this.get("model").save().then(redirectToShow).catch(handleErrors);
+	    },
+	    view: function(post) {
+	      this.transitionToRoute('posts.show',post);
+
 	    }
 	}
 });

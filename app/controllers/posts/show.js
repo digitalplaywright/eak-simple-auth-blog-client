@@ -3,7 +3,12 @@ var PostsShowController =  Ember.ObjectController.extend({
 	    edit: function(post) {
 	      this.transitionToRoute('posts.edit',post);
 
+	    },
+	    viewAll: function() {
+	      this.transitionToRoute('posts.index');
+
 	    }
+
 	}
 });
 
