@@ -6,7 +6,7 @@ An example of using [Ember-Simple-Auth](https://github.com/simplabs/ember-simple
 This example will NOT work without a companion API server.
 
 
-You can use our [Rails/Devise/Doorkeeper companion server](https://github.com/digitalplaywright/rails-token-auth),
+You can use our [Rails/Devise/Doorkeeper companion server](https://github.com/digitalplaywright/eak-simple-auth-blog-server),
 **or any other oauth API server of your choice**.
 
 ## Getting Started
