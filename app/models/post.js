@@ -1,5 +1,8 @@
 var Post = DS.Model.extend({
-  details:      DS.attr('string')
+  title:      DS.attr('string'),  
+  details:    DS.attr('string'),
+  category:   DS.attr('number'),
+  created_at: DS.attr('date')
 });
 
 export default Post;

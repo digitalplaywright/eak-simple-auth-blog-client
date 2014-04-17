@@ -1,12 +1,7 @@
 f<div class="page-header">
   	<div class="row">
-	  <div class="col-xs-12 col-md-8">
-		  <h1>All Posts</h1>
-	  </div>
 	  <div class="col-xs-6 col-md-4">
 		<button {{action 'createNew'}}>New Post</button>
-
-
 	  </div>
 	</div>
 </div>
@@ -26,13 +21,13 @@ f<div class="page-header">
 		{{#each post in model}}
 		    <tr>
 				<td>  
-				   <a {{action 'view' post}}> {{post.details}}  </a>  
+				   <a {{action 'view' post}}> {{post.title}}  </a>  
 				</td>
 				<td> 
 				   {{post.details}}   
 				</td>
 				<td> 
-				   {{post.details}} 
+				   {{post.created_at}} 
 				</td>
 		    </tr>	
 		{{/each}}
