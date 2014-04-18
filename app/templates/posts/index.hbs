@@ -11,20 +11,15 @@ f<div class="page-header">
     <thead>
       <tr>
         <th> Title    </th>
-        <th> Category </th>
         <th> When </th>
       </tr>
 
     </thead>
     <tbody>
-
 		{{#each post in model}}
 		    <tr>
 				<td>  
 				   <a {{action 'view' post}}> {{post.title}}  </a>  
-				</td>
-				<td> 
-				   {{post.details}}   
 				</td>
 				<td> 
 				   {{post.created_at}} 
