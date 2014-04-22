@@ -1,4 +1,5 @@
 var PostsController =  Ember.ObjectController.extend({
+
 	actions: {
 	    createNew: function() {
 	      this.transitionToRoute('posts.new');

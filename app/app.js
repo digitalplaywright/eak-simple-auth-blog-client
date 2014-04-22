@@ -1,6 +1,7 @@
 import Resolver from 'ember/resolver';
 import AutoAuthenticator from 'appkit/libs/auto-authenticate';
 import auth from "appkit/initializers/auth";
+import AuthorizedRouteMixin from "appkit/mixins/authorized-route-mixin";
 
 
 var App = Ember.Application.extend({
@@ -13,7 +14,7 @@ var App = Ember.Application.extend({
   Resolver: Resolver['default']
 });
 
-
+Ember.AuthorizedRouteMixin = AuthorizedRouteMixin;
 
 Ember.Application.initializer(auth);
 
