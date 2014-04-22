@@ -1,4 +1,4 @@
-var PostsRoute = Ember.Route.extend(Ember.AuthorizedRouteMixin, {
+var PostsRoute = Ember.Route.extend(Ember.AuthorizeRouteMixin, {
   model: function() {
     return this.store.find('post');
   }

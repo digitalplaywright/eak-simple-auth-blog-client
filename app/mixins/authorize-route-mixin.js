@@ -1,4 +1,4 @@
-var AuthorizedRouteMixin = Ember.Mixin.create({
+var AuthorizeRouteMixin = Ember.Mixin.create({
   afterModel: function(posts, transition) {
   	  console.log('name of the route (e.g posts.index):');
       console.log(transition.targetName);
@@ -15,4 +15,4 @@ var AuthorizedRouteMixin = Ember.Mixin.create({
 
 });
 
-export default AuthorizedRouteMixin;
+export default AuthorizeRouteMixin;
