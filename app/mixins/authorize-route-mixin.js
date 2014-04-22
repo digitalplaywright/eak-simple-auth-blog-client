@@ -1,7 +1,30 @@
 var AuthorizeRouteMixin = Ember.Mixin.create({
-  afterModel: function(posts, transition) {
-  	  console.log('name of the route (e.g posts.index):');
+  afterModel: function(model, transition) {
+
+      console.log('## step 1: name of the route (e.g posts.index) ##');
       console.log(transition.targetName);
+
+      console.log('## step 2: name of model ##');
+
+
+      //Method #1: Get necessary info from model
+
+      console.log('Method #1: Get necessary info from model');
+
+      if(DS.Model.detectInstance(model)){
+            console.log("this is an instance:");
+            console.log(model.constructor.typeKey);
+      }else if(DS.RecordArray.detectInstance(model)){
+            console.log('it is an array of:');
+            console.log(model.type.typeKey);
+
+
+      }
+
+      //Method #2: Get necessary info from transition
+      console.log('Method #2: Get necessary info from transition');
+
+
       console.log('name of the model (even if its an array of results)');
       console.log(Ember.Inflector.inflector.singularize(transition.targetName.split('.')[0]));
   },
