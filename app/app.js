@@ -2,7 +2,7 @@ import Resolver from 'ember/resolver';
 import AutoAuthenticator from 'appkit/libs/auto-authenticate';
 import auth from "appkit/initializers/auth";
 import AuthorizeRouteMixin from "appkit/mixins/authorize-route-mixin";
-
+import DeclarativeRules from 'appkit/libs/declarative-rules';
 
 var App = Ember.Application.extend({
   LOG_ACTIVE_GENERATION: true,
@@ -13,6 +13,15 @@ var App = Ember.Application.extend({
   modulePrefix: 'appkit', // TODO: loaded via config
   Resolver: Resolver['default']
 });
+
+console.log("FUCKWAD");
+console.log(DeclarativeRules);
+console.log("FUCKWAD");
+
+Ember.DeclarativeRules    = DeclarativeRules;
+
+
+Ember.DeclarativeRules = new Ember.DeclarativeRules();
 
 Ember.AuthorizeRouteMixin = AuthorizeRouteMixin;
 
