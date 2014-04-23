@@ -15,6 +15,7 @@ var DeclarativeRules = Ember.Object.extend({
 
     required_properties: ["activity","can"],
 	optional_properties: ["actor","object", "target"],
+	expected_properties: [],
 	hash_key_separator: "-",
 
     validateFormat: function(item, require_can_definition){
@@ -31,6 +32,22 @@ var DeclarativeRules = Ember.Object.extend({
 			}
 			
 	    });
+
+	    var self = this;
+  
+	    var unexpected_properties = Object.keys(item).filter(function(i) {return self.expected_properties.indexOf(i) < 0;});
+
+	    if(unexpected_properties.length > 0)
+	    {
+     	    var message = "Error: Unexpected field(s) ";
+			message = message.concat(JSON.stringify(unexpected_properties) );
+			message = message.concat(" in: ", JSON.stringify(item) );
+
+			throw message;
+
+	    }
+
+
     },
 
     get_hash_key: function(item, require_can_definition){
@@ -38,11 +55,9 @@ var DeclarativeRules = Ember.Object.extend({
 
 		var hash_key="";
 
-    	var expected_properties = this.required_properties.concat(this.optional_properties);
-
         self.validateFormat(item, require_can_definition);
 
-		expected_properties.forEach(function(prop_name, index, enumerable){
+		this.expected_properties.forEach(function(prop_name, index, enumerable){
             var cur_prop = item[prop_name];
 
 			if(prop_name != "can" && cur_prop != undefined){ 
@@ -82,7 +97,10 @@ var DeclarativeRules = Ember.Object.extend({
     },
 
     init: function(){
+
+        this.expected_properties = this.required_properties.concat(this.optional_properties);
         this.make_activities_hash();
+
     },
     
 	type_of: function(object){
@@ -104,9 +122,6 @@ var DeclarativeRules = Ember.Object.extend({
     can: function( params_hash ) {
 
     	var hash_key = this.get_hash_key(params_hash, false);
-    	console.log('hash key is');
-    	console.log(hash_key);
-    	console.log(this.activities_hash.hasOwnProperty(hash_key));
 
 		if( !this.activities_hash.hasOwnProperty(hash_key) ){
 			var message = "Error: no matching activity definition found for ";
