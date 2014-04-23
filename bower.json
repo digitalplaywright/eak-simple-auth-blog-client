@@ -12,5 +12,8 @@
     "ember-testing-httpRespond": "~0.1.1",
     "ember-simple-auth": "https://github.com/simplabs/ember-simple-auth-component.git",
     "loader.js": "git://github.com/stefanpenner/loader.js"
+  },
+  "devDependencies": {
+    "permit-authorize": "https://github.com/kristianmandrup/permit-authorize.git"
   }
 }
