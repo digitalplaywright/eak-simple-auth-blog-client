@@ -13,12 +13,15 @@ var DeclarativeRules = Ember.Object.extend({
 	],
 	activities_hash: {},
 
-    required_properties: ["activity","can"],
+    required_properties: ["activity"],
+    required_functions: ["can"],
 	optional_properties: ["actor","object", "target"],
 	expected_properties: [],
 	hash_key_separator: "-",
 
     validateFormat: function(item, require_can_definition){
+
+    	//validate required properties
     	this.required_properties.forEach(function(prop_name, index, enumerable){
     		if ( require_can_definition == false && prop_name == "can" ){
 
@@ -33,9 +36,22 @@ var DeclarativeRules = Ember.Object.extend({
 			
 	    });
 
+	    if( require_can_definition == true && typeof(item["can"]) != "function")
+	    {
+	    	var message = "Error: Can is not a function in ";
+			message = message.concat(" in: ", JSON.stringify(item) );
+
+			throw message;
+
+	    }
+
+
+        //validate that only expected properties
 	    var self = this;
   
-	    var unexpected_properties = Object.keys(item).filter(function(i) {return self.expected_properties.indexOf(i) < 0;});
+	    var unexpected_properties = Object.keys(item).filter(function(i) {
+	    	return self.expected_properties.indexOf(i) < 0 && self.required_functions.indexOf(i) < 0;
+	    });
 
 	    if(unexpected_properties.length > 0)
 	    {
@@ -60,7 +76,7 @@ var DeclarativeRules = Ember.Object.extend({
 		this.expected_properties.forEach(function(prop_name, index, enumerable){
             var cur_prop = item[prop_name];
 
-			if(prop_name != "can" && cur_prop != undefined){ 
+			if(cur_prop != undefined){ 
 			    if (index != 0)	{ hash_key = hash_key.concat(self.hash_key_separator) }		
 
 			    if (  typeof cur_prop === 'string' ){
