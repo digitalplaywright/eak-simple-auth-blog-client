@@ -14,7 +14,6 @@ var DeclarativeRules = Ember.Object.extend({
 	activities_hash: {},
 
     required_properties: ["activity"],
-    required_functions: ["can"],
 	optional_properties: ["actor","object", "target"],
 	expected_properties: [],
 	hash_key_separator: "-",
@@ -50,7 +49,7 @@ var DeclarativeRules = Ember.Object.extend({
 	    var self = this;
   
 	    var unexpected_properties = Object.keys(item).filter(function(i) {
-	    	return self.expected_properties.indexOf(i) < 0 && self.required_functions.indexOf(i) < 0;
+	    	return i != "can" && self.expected_properties.indexOf(i) < 0;
 	    });
 
 	    if(unexpected_properties.length > 0)
