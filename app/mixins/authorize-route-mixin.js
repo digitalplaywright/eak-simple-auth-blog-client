@@ -6,6 +6,7 @@ var AuthorizeRouteMixin = Ember.Mixin.create({
 
       console.log('## step 2: name of model ##');
 
+      //Ember.DeclarativeRules.can({ activity: this.routeName, actor: me, object: model });
 
       //Method #1: Get necessary info from model
 
@@ -20,6 +21,15 @@ var AuthorizeRouteMixin = Ember.Mixin.create({
 
 
       }
+
+      console.log('current user is')
+      console.log()
+
+      console.log(this.store.find('user','current'))
+
+      console.log('current')
+      console.log(this.store.find('user',{ token: this.get('session').get('access_token') }))
+
 
       //Method #2: Get necessary info from transition
       console.log('Method #2: Get necessary info from transition');

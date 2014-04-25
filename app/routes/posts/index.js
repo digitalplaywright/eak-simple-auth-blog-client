@@ -5,3 +5,4 @@ var PostsRoute = Ember.Route.extend(Ember.AuthorizeRouteMixin, {
 });
 
 export default PostsRoute;
+

@@ -1,8 +1,12 @@
 
 var DeclarativeRules = Ember.Object.extend({
+	
 	activities: [ 
 	    {
-	      activity: 'edit',
+	      activity: 'posts.index',
+	      actor:    'user',
+	      object:   'post',
+	      target:   'postsEditController'
 
 	      can:  function(actor, object, target) {
 	      	return true;
@@ -11,6 +15,8 @@ var DeclarativeRules = Ember.Object.extend({
 	    }
 
 	],
+
+
 	activities_hash: {},
 
     required_properties: ["activity"],
