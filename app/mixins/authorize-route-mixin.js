@@ -1,5 +1,4 @@
 var AuthorizeRouteMixin = Ember.Mixin.create({
-  unauthorized_error: null,
   afterModel: function(model, transition) {
       var self = this;
 
