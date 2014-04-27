@@ -1,4 +1,14 @@
 
+/**
+  The object that registers a rule definition from 'rules:main' and 
+  authorizes rule invocations.
+
+  @class DeclarativeRules
+  @namespace $mainModule
+  @extends Ember.Object
+  @static
+*/
+
 var DeclarativeRules = Ember.Object.extend({
 	activities_hash: {},
 
