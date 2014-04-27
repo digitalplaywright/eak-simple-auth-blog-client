@@ -30,9 +30,8 @@ var DeclarativeRules = Ember.Object.extend({
 
     	//validate required properties
     	this.required_properties.forEach(function(prop_name, index, enumerable){
-    		if ( require_can_definition == false && prop_name == "can" ){
 
-    		}else if( item[prop_name] == undefined )
+    		if( item[prop_name] == undefined )
 			{
 				var message = "Error: Missing required property ";
 				message = message.concat(JSON.stringify(prop_name) );
@@ -43,7 +42,9 @@ var DeclarativeRules = Ember.Object.extend({
 			
 	    });
 
-	    if( require_can_definition == true && typeof(item["can"]) != "function")
+	    if( ( require_can_definition == true ) && 
+	    	( typeof(item["can"]) != "function" ) 
+	      )
 	    {
 	    	var message = "Error: Can is not a function in ";
 			message = message.concat(" in: ", JSON.stringify(item) );
@@ -248,7 +249,7 @@ var DeclarativeRules = Ember.Object.extend({
 	  @param {Object} params_hash A rule lookup.
     */
     cannot: function( params_hash ) {
-    	return !can(params_hash);
+    	return !this.can(params_hash);
     }
 
 });
