@@ -1,20 +1,27 @@
 var AuthorizeRouteMixin = Ember.Mixin.create({
+  unauthorized_error: null,
   afterModel: function(model, transition) {
+      var self = this;
       try{
         Ember.DeclarativeRules.can({ activity: this.routeName, target: model });
       }catch(e){
-        transition.abort();
-        alert( e.message);
-
+        //transition.abort();
+        self.unauthorized_error = e.message;
+        Ember.Logger.error(e.message);
+        //this.set('session.attemptedTransition', transition);
+        //this.transitionToRoute('unauthorized',e);
      }
 
   },
-  actions: {
-    error: function(reason) {
-      if( reason.error().status == 401  ){
-	    console.log('handle unauthorized');
-      }
-    }
+  'renderTemplate' : function() {
+     var message = this.unauthorized_error;
+
+     switch(this.get('unauthorized_error')){
+      case null : return this.render();
+      default: return this.render('401');
+
+     }
+  
   }
 
 });
