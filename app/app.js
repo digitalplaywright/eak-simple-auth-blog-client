@@ -3,6 +3,7 @@ import AutoAuthenticator from 'appkit/libs/auto-authenticate';
 import auth from "appkit/initializers/auth";
 import AuthorizeRouteMixin from "appkit/mixins/authorize-route-mixin";
 import DeclarativeRules from 'appkit/libs/declarative-rules';
+import RulesMain from 'appkit/rules/main';
 
 var App = Ember.Application.extend({
   LOG_ACTIVE_GENERATION: true,
@@ -14,16 +15,23 @@ var App = Ember.Application.extend({
   Resolver: Resolver['default']
 });
 
-console.log("FUCKWAD");
-console.log(DeclarativeRules);
-console.log("FUCKWAD");
 
-Ember.DeclarativeRules    = DeclarativeRules;
+Ember.Application.initializer({
+  name: 'my rules lib initializer',
+  initialize: function (container, application) {
+    container.register('rules:main', RulesMain);
 
+    container.injection('route', 'rules', 'rules:main');
+    container.injection('controller', 'rules', 'rules:main');
+ 
+    container.register('rules:eval', DeclarativeRules);
 
-Ember.DeclarativeRules = new Ember.DeclarativeRules();
+    container.lookup('rules:eval').setup(container);
+  }
+})
 
 Ember.AuthorizeRouteMixin = AuthorizeRouteMixin;
+Ember.DeclarativeRules = new DeclarativeRules();
 
 Ember.Application.initializer(auth);
 

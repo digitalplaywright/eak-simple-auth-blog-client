@@ -6,6 +6,8 @@ var AuthorizeRouteMixin = Ember.Mixin.create({
 
       console.log('## step 2: name of model ##');
 
+
+
       //Ember.DeclarativeRules.can({ activity: this.routeName, actor: me, object: model });
 
       //Method #1: Get necessary info from model
@@ -18,12 +20,9 @@ var AuthorizeRouteMixin = Ember.Mixin.create({
       }else if(DS.RecordArray.detectInstance(model)){
             console.log('it is an array of:');
             console.log(model.type.typeKey);
-
-
       }
 
       console.log('current user is')
-      console.log()
 
       console.log(this.store.find('user','current'))
 
