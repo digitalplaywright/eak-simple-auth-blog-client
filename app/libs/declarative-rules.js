@@ -178,11 +178,22 @@ var DeclarativeRules = Ember.Object.extend({
 
     },
 
+    /**
+	  init the object
+
+	  @method init
+    */
     init: function(){
         this.expected_properties = this.required_properties.concat(this.optional_properties);
     },
 
 
+    /**
+	  setup the object
+
+	  @method setup
+	  @param {Object} container The container object of the Ember app.
+    */
     setup: function(container){
         this.make_activities_hash(container);
     },
