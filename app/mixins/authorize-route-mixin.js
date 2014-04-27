@@ -1,3 +1,14 @@
+/**
+  The mixin for routes that require authorization in order to be accessible.
+
+  The mixin defines an afterModel hook that authorizes the route. 
+
+  @class AuthorizeRouteMixin
+  @namespace $mainModule
+  @extends Ember.Mixin
+  @static
+*/
+
 var AuthorizeRouteMixin = Ember.Mixin.create({
   afterModel: function(model, transition) {
 
