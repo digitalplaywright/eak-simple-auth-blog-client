@@ -1,6 +1,5 @@
 var AuthorizeRouteMixin = Ember.Mixin.create({
   afterModel: function(model, transition) {
-      var self = this;
 
       var rule = { activity: this.routeName, object: model };
 
