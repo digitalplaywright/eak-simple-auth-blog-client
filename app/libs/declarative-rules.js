@@ -5,7 +5,7 @@ var DeclarativeRules = Ember.Object.extend({
     required_properties: ["activity"],
 	optional_properties: ["actor","object", "target"],
 	expected_properties: [],
-	hash_key_separator: "-",
+	hash_key_separator:  "-",
 
 	/**
 	  Validates that a rule definition is in the correct format.
@@ -38,7 +38,7 @@ var DeclarativeRules = Ember.Object.extend({
 				message = message.concat(JSON.stringify(prop_name) );
 				message = message.concat(" in: ", JSON.stringify(item) );
 
-				throw message;
+				throw new Error(message);
 			}
 			
 	    });
@@ -48,7 +48,7 @@ var DeclarativeRules = Ember.Object.extend({
 	    	var message = "Error: Can is not a function in ";
 			message = message.concat(" in: ", JSON.stringify(item) );
 
-			throw message;
+			throw new Error(message);
 
 	    }
 
@@ -66,7 +66,7 @@ var DeclarativeRules = Ember.Object.extend({
 			message = message.concat(JSON.stringify(unexpected_properties) );
 			message = message.concat(" in: ", JSON.stringify(item) );
 
-			throw message;
+			throw new Error(message);
 
 	    }
 
@@ -123,7 +123,7 @@ var DeclarativeRules = Ember.Object.extend({
 			var message = "Error: Activity with the same definition already exists for ";
 			message = message.concat( JSON.stringify(cur_def) );
 
-			throw message;
+			throw new Error(message);
 		}
 
 		this.activities_hash[hash_key] = cur_def.can;
@@ -154,7 +154,7 @@ var DeclarativeRules = Ember.Object.extend({
       	var rules = container.lookup('rules:main');
 
       	if( rules == undefined ){
-      		throw "no rules are defined"
+      		throw new Error("no rules are defined");
       	}
 
         for(var item in rules){
@@ -215,10 +215,7 @@ var DeclarativeRules = Ember.Object.extend({
       	return object.type.typeKey;
       }else{
 
-		var message = "Error: Type unhandled for ";
-		message = message.concat(message, JSON.stringify(object) );
-
-		throw message;
+		throw new Error("Error: Type unhandled for "+JSON.stringify(object));
       }
 
 	},
@@ -235,10 +232,7 @@ var DeclarativeRules = Ember.Object.extend({
     	var hash_key = this.get_hash_key(params_hash, false);
 
 		if( !this.activities_hash.hasOwnProperty(hash_key) ){
-			var message = "Error: no matching activity definition found for ";
-			message = message.concat(JSON.stringify(params_hash) );
-
-			throw message;
+			throw new Error("Error: no matching activity definition found for "+JSON.stringify(params_hash.activity));
 		}
 
 		return this.activities_hash[hash_key](params_hash["actor"],

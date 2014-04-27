@@ -1,6 +1,13 @@
 var AuthorizeRouteMixin = Ember.Mixin.create({
   afterModel: function(model, transition) {
-      Ember.DeclarativeRules.can({ activity: this.routeName, object: model });
+      try{
+        Ember.DeclarativeRules.can({ activity: this.routeName, target: model });
+      }catch(e){
+        transition.abort();
+        alert( e.message);
+
+     }
+
   },
   actions: {
     error: function(reason) {
