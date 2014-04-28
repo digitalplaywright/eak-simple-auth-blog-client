@@ -37,7 +37,7 @@ Handlebars.registerHelper('can', function(permissionName, options){
 
   var rules = this.container.lookup('rules:eval');
 
-  var attr = {};
+
 
   if ( options == null ){
     options = { activity: permissionName };
@@ -45,7 +45,11 @@ Handlebars.registerHelper('can', function(permissionName, options){
     options['activity'] = permissionName;
   }
 
-  return Ember.Handlebars.helpers.boundIf.call(rules, "can", {activity: "edit"});
+
+  //PS! Hardcoded to specific helper
+  var attr = {activity: "edit"};
+
+  return Ember.Handlebars.helpers.boundIf.call(rules, "can", attr);
 });
 
 
