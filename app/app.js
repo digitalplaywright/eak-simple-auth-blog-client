@@ -27,8 +27,27 @@ Ember.Application.initializer({
     container.register('rules:eval', DeclarativeRules);
 
     container.lookup('rules:eval').setup(container);
+
+    container.injection('route', 'declarative-rules', 'rules:eval');
+    container.injection('controller', 'declarative-rules', 'rules:eval');
   }
 })
+
+Handlebars.registerHelper('can', function(permissionName, options){
+
+  var rules = this.container.lookup('rules:eval');
+
+  var attr = {};
+
+  if ( options == null ){
+    options = { activity: permissionName };
+  }else{
+    options['activity'] = permissionName;
+  }
+
+  return Ember.Handlebars.helpers.boundIf.call(rules, "can", {activity: "edit"});
+});
+
 
 Ember.AuthorizeRouteMixin = AuthorizeRouteMixin;
 Ember.DeclarativeRules = new DeclarativeRules();

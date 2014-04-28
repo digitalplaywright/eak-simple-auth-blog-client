@@ -1,4 +1,3 @@
-
 /**
   The object that registers a rule definition from 'rules:main' and 
   authorizes rule invocations.
