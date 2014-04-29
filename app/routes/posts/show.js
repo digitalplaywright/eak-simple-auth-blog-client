@@ -1,4 +1,4 @@
-var PostsShowRoute = Ember.Route.extend(Ember.AuthorizeRouteMixin, {
+var PostsShowRoute = Ember.Route.extend({
 });
 
 export default PostsShowRoute;

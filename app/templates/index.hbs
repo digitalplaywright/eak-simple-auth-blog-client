@@ -7,9 +7,11 @@
 </p>
 
 
-{{#can "edit"}}
+{{#cannot "edit"  }}
 <h1> This should display </h1>
-{{/can}}
+{{else}}
+<h1> Not display </h1>
+{{/cannot}}
 
 
 <div class="alert alert-warning">

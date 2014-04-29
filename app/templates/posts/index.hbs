@@ -17,13 +17,19 @@ f<div class="page-header">
     </thead>
     <tbody>
  
-        {{#can "edit"}}
-          TestFDSAFASF
-        {{/can}}
+
 
 		{{#each post in model}}
+
 		    <tr>
 				<td>  
+					{{#can post "edit" post }}
+					  <h1> Title: {{post.title}} </h1>
+
+					{{/can}}
+
+
+
 
 				   <a {{action 'view' post}}> {{post.title}}  </a>  
 				</td>

@@ -33,24 +33,95 @@ Ember.Application.initializer({
   }
 })
 
-Handlebars.registerHelper('can', function(permissionName, options){
 
-  var rules = this.container.lookup('rules:eval');
-
-
-
-  if ( options == null ){
-    options = { activity: permissionName };
-  }else{
-    options['activity'] = permissionName;
-  }
+Handlebars.registerHelper("can", function(actor, activity, object, fn)
+{
+  var context = (fn.contexts && fn.contexts[0]) || this;
+  var args = [actor, activity ,object, fn];
+  var options   = args.pop();
 
 
-  //PS! Hardcoded to specific helper
-  var attr = {activity: "edit"};
+  var canAction = function(can_args)
+  {
+    var rules = context.container.lookup('rules:eval');
+    console.log('calling for');
+    console.log(can_args);
 
-  return Ember.Handlebars.helpers.boundIf.call(rules, "can", attr);
+    return rules.can({ actor: can_args[0], activity: can_args[1], object: can_args[2] });
+
+  };
+
+  // Gather all bound property names to pass in order to observe them
+  var properties = options.types.reduce(function(results, type, index) {
+    if (type === 'ID') {
+      results.push(args[index]);
+    }
+    return results;
+  }, []);
+
+
+ // Resolve actual values for all params to pass to the conditional callback
+  var normalizer = function() {
+    return Ember.Handlebars.resolveParams(context, args, options);
+  };
+ 
+  return Ember.Handlebars.bind.call(context, 'content', fn, true, canAction, normalizer, properties );
 });
+
+Handlebars.registerHelper("ifData", function(property, fn)
+{
+  var context = (fn.contexts && fn.contexts[0]) || this;
+  var args    = [property];
+
+  var canAction = function(can_args)
+  {
+    alert('I was called for '+can_args[0].get('id'));
+    return true;
+  };
+
+   // Resolve actual values for all params to pass to the conditional callback
+  var normalizer = function() {
+    return Ember.Handlebars.resolveParams(context, args, fn);
+  };
+ 
+  return Ember.Handlebars.bind.call(context, 'content', fn, false, canAction, normalizer, args);
+});
+
+
+
+Handlebars.registerHelper("cannot", function(actor, action, object, fn)
+{
+  var context = (fn.contexts && fn.contexts[0]) || this;
+
+
+  var cannotAction = function(result)
+  {
+    var rules = context.container.lookup('rules:eval');
+
+    return rules.cannot({activity: result[1], actor: result[0], object: result[2] });
+
+  };
+
+  var args = [actor, action ,object, fn];
+  var options   = args.pop();
+
+  // Gather all bound property names to pass in order to observe them
+  var properties = options.types.reduce(function(results, type, index) {
+    if (type === 'ID') {
+      results.push(args[index]);
+    }
+    return results;
+  }, []);
+
+
+ // Resolve actual values for all params to pass to the conditional callback
+  var normalizer = function() {
+    return Ember.Handlebars.resolveParams(context, [actor, action ,object, fn], fn);
+  };
+ 
+  return Ember.Handlebars.bind.call(context, 'content', fn, true, cannotAction, normalizer, properties );
+});
+
 
 
 Ember.AuthorizeRouteMixin = AuthorizeRouteMixin;
