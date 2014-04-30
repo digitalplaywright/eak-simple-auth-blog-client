@@ -5,10 +5,10 @@ var Post = DS.Model.extend({
 
   updated_at: DS.attr('date'),
 
-  salutationDidChange: function() {
+  computeUpdatedAt: function() {
     // some side effect of salutation changing
-    this.set('updated_at', new Date());
-  }.property('title')
+    this.set('updated_at', new Date() );
+  }.property('title', 'details')
 });
 
 export default Post;
