@@ -7,7 +7,8 @@ var Post = DS.Model.extend({
 
   computeUpdatedAt: function() {
     // some side effect of salutation changing
-    this.set('updated_at', new Date() );
+    //this.set('updated_at', new Date() );
+    return new Math.random();
   }.property('title', 'details')
 });
 
