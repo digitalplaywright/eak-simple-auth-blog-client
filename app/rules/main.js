@@ -1,12 +1,25 @@
 export default Ember.Object.extend({
-	'edit': {
+	'edit': [
+	{
+		actor:  "post",
+		object: "post",
+		target: "post",
+		can: function(actor, object, target){
+			return actor.get('title')=="mydream";
+		}
+
+	},
+	{
 		actor:  "post",
 		object: "post",
 		can: function(actor, object, target){
 			return actor.get('title')=="mydream";
 		}
 
-	},
+	}
+
+
+	],
 	'posts.index': {
 		object: 'post',
 		can: function(actor, object, target){
