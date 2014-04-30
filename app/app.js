@@ -65,7 +65,7 @@ Handlebars.registerHelper("can", function(actor, activity, object, fn)
     return Ember.Handlebars.resolveParams(context, args, options);
   };
  
-  return Ember.Handlebars.bind.call(context, 'content', fn, true, canAction, normalizer, properties );
+  return Ember.Handlebars.bind.call(context, 'content', options, true, canAction, normalizer, properties );
 });
 
 Handlebars.registerHelper("ifData", function(property, fn)
@@ -84,7 +84,7 @@ Handlebars.registerHelper("ifData", function(property, fn)
     return Ember.Handlebars.resolveParams(context, args, fn);
   };
  
-  return Ember.Handlebars.bind.call(context, 'content', fn, false, canAction, normalizer, args);
+  return Ember.Handlebars.bind.call(context, 'content', fn, true, canAction, normalizer, args);
 });
 
 

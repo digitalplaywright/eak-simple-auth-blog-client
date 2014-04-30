@@ -4,7 +4,7 @@ var PostsEditController =  Ember.ObjectController.extend({
 	      var _self = this;
 
 	      function redirectToShow() {
-	        _self.transitionToRoute('posts.show', _self.get('model'));
+	        //_self.transitionToRoute('posts.show', _self.get('model'));
 	      }
 	      function handleErrors(reason) {
 	        // if reason instanceof DS.InvalidError

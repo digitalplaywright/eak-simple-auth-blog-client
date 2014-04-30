@@ -15,5 +15,12 @@
       {{input details}}
       <button {{action "save"}}> Save </button>
     {{/form-for}}
+
+
+    {{#ifData title }}
+      <h1> Title: {{title}} </h1>
+
+    {{/ifData}}
+
   </div>
 </div>

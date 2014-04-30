@@ -1,7 +1,14 @@
 var Post = DS.Model.extend({
   title:      DS.attr('string'),  
   details:    DS.attr('string'),
-  created_at: DS.attr('date')
+  created_at: DS.attr('date'),
+
+  updated_at: DS.attr('date'),
+
+  salutationDidChange: function() {
+    // some side effect of salutation changing
+    this.set('updated_at', new Date());
+  }.property('title')
 });
 
 export default Post;
