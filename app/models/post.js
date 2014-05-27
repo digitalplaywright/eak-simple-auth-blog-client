@@ -5,6 +5,8 @@ var Post = DS.Model.extend({
 
   updated_at: DS.attr('date'),
 
+  user: DS.belongsTo('user'),
+
   computeUpdatedAt: function() {
     // some side effect of salutation changing
     //this.set('updated_at', new Date() );
