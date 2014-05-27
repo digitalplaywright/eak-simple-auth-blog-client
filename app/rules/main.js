@@ -18,6 +18,7 @@ export default Ember.Object.extend({
 
 	],
 	'posts.index': {
+		actor:  'post',
 		object: 'post',
 		can: function(actor, object, target){
 			return true;

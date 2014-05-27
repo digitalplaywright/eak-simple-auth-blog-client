@@ -1,5 +1,7 @@
 var PostsController =  Ember.ObjectController.extend({
-
+	cur_actor: function(){
+		return this.store.find('post','1');
+	},
 	actions: {
 	    createNew: function() {
 	      this.transitionToRoute('posts.new');
