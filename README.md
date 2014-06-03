@@ -6,13 +6,18 @@ An example of using [Ember-Simple-Auth](https://github.com/simplabs/ember-simple
 This example will NOT work without a companion API server.
 
 
-You can use our [Rails/Devise/Doorkeeper companion server](https://github.com/digitalplaywright/rails-token-auth),
+You can use our [Rails/Devise/Doorkeeper companion server](https://github.com/digitalplaywright/eak-simple-auth-blog-server),
 **or any other oauth API server of your choice**.
 
 ## Getting Started
 
 Follow the [Ember App Kit Getting Started Guide](http://iamstef.net/ember-app-kit/guides/getting-started.html) to setup and run this api client.
-
+```
+npm install -g grunt-cli
+npm install -g bower
+npm install
+grunt server
+```
 ## Why a standalone API server?
 
 A standalone API Server enables clear separation between the API and the Ember client. This makes:
