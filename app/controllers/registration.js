@@ -23,7 +23,7 @@ var RegistrationController = Em.Controller.extend({
           
           console.log("Registration Suceeded!");
           
-          _this.get('session').authenticate('authenticator:oauth2-password-grant', {
+          _this.get('session').authenticate('ember-simple-auth-authenticator:oauth2-password-grant', {
             identification: data.email,
             password: data.password
           });
